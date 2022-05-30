@@ -1,0 +1,14 @@
+from serpapi import GoogleSearch
+
+params = {
+  "api_key": "17487d86d74faf8eb5556574b6f10063018fd4780f00492ff9574b148b302582",
+  "engine": "google",
+  "q": "car service center in lucknow",
+  "location": "Austin, Texas, United States",
+  "google_domain": "google.com",
+  "gl": "us",
+  "hl": "en"
+}
+
+search = GoogleSearch(params)
+results = search.get_dict()

@@ -1,0 +1,91 @@
+<html>
+<head>
+ {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/styles.css" %}">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="{% static "js/custom.js" %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
+<style>
+   body{
+      background-image:url('{% static "media/product3.jpg" %}');
+	  background-size:cover;
+	  background-position:center;
+	  font-family:sans-serif;
+   }
+   .login{
+      width:600px;
+	  height:350px;
+	  margin:auto;
+	  margin-top:100px;
+	  margin-left:50%;
+	  
+	  <!--  -webkit-box-shadow: 10px 4px 14px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 4px 14px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 4px 14px 0px rgba(0,0,0,0.75); -->
+	  
+   }
+   h1{
+      text-align:center;
+	  padding-top:15px;
+	  color:white;
+   }
+   
+   .para{
+       text-align:center;
+	   color:red;
+	   font-size:15px;
+	   margin-top:45px;
+	   margin-left:40%;
+   
+   }
+   
+input[type=text], select {
+  width: 85%;
+  padding: 12px 20px;
+  padding-left:10px;
+  margin: 8px 10px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  
+}
+.para1
+{
+  color:white;
+     font-size:20px;
+     margin-top:45px;
+  margin-left: 10px;
+}
+
+div {
+  border-radius: 5px;
+ <!--  background-color:#0ba0bf; -->
+  padding: 10px;
+}
+
+</style>
+</head>
+<body>
+   <p class="para1" ><a href="/index" style="color:white">Home</a></p>
+   <div class="login">
+  <h1 style="color:black">Sign in</h1>
+  <h3 style="text-align: center;font-size: 16px;color: red;">{{error_message}}</h3>
+  <h3 style="text-align: center;font-size: 16px;color: green;">{{success_message}}</h3>
+  <form class="form" id="adminlogin_form" action="/adminloginprocess/" method="post">
+    {%csrf_token%}
+    <label for="username" style="color:white;font-size:20px;margin-left:10px">Username</label>
+    <input type="Username" id="username" name="username" placeholder="Enter your username"  class="form-control">
+	<br/><br/>
+    <label for="password" style="color:white;font-size:20px;margin-left:10px">Password</label>
+    <input type="password" id="password" name="password" placeholder="Enter Password" class="form-control" required>
+	<br/><br/>
+    <center>
+	<div> 
+	<button type="button" id="form-submit" class="btn btn-primary btn-lg"onclick="adminloginvalidate();">Submit</button>
+	</div>
+  </form>
+  </div>
+  </body>
+</html>                                        

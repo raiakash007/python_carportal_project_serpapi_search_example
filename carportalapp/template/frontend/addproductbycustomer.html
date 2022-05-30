@@ -1,0 +1,172 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Stylesheet_admin.css' %}" type="text/css">
+    {% load static%}
+    <script>
+        $(function () {
+            $('a[data-toggle="tab"]').on('click', function (e) {
+                window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
+            var activeTab = window.localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('#myTab a[href="' + activeTab + '"]').tab('show');
+                window.localStorage.removeItem("activeTab");
+            }
+        });
+</script>
+
+
+
+</head>
+
+
+<body>
+    <h5 style="margin-top: 5px;float:right;color:blue;margin-right:20px;">WELCOME {{user_email}}</h5>
+    <a href="/userlogout/"style="color:blue;float:right;margin-top:75px;font-size: 20px;margin-right:5px;">Logout</a>
+    <img src="{% static 'media/carlogo.png' %}" class="d-block w-100" alt="..." width="9% " style="float:left;padding-right:15px;padding-top:5px">
+    <br>
+    <br>
+    <br>
+      <div style="background:url('/static/images/blur2.jpg');background-repeat:no-repeat;height:1200px">
+        <div class="col-lg-3">
+            <br />
+            <br />
+            <br />
+            <br/>
+            <br/>
+            <hr />
+            <div class=" col-lg-7" style="background-image:url('/static/images/login3.jpg'); height: 400px;width:30%">
+                <!-- required for floating -->
+                <!-- Nav tabs -->
+                <br />
+                <br />
+                <ul class="nav nav-tabs tabs-left sideways " id="myTab" style="margin-top:5px">
+                    <li>
+                      <a href="/productrenderbycustomer/" style="display: block;">Add/Edit Products <br>
+                      </a>
+                       </li>
+                       <li>
+                        <br>
+                      <a href= "#" style="color:blue">EDIT PROFILE <br>
+                      </a>
+                       </li>
+                       <br>
+                    <li>
+                        <a href="#" style="color:blue" data-toggle="tab">ORDER HISTORY<br>
+                          </a>
+                            </li>
+                            <br>
+                    
+                    <br>
+                </ul>
+            </div>
+            <div class="col-lg-5">
+              <div class="tab-content">
+                <!-- add project -->
+              <div class="tab-pane fade in active " id="add_project" style="margin-left: 270%; width: 800%; padding:40px;opacity:.8">
+                   
+                    <form method="post" action="/addproductbycustomer/" enctype="multipart/form-data">
+                      {% csrf_token %}
+                     <h5> {{success}}</h5>
+                         <h1 style="color:blue;text-align:center;font-style:normal;font-weight:bold;font-family:'Times New Roman', Times, serif;font-size:39px">
+                          Add New Product
+                         </h1>
+                        <div class="form-group" >
+                            <label for="product_name"  style="color:blue; font-size:15px">Product Name</label>
+                            <input type="text" class="form-control" name="product_name" placeholder="Enter Product name"required>
+                        </div>
+
+                        <div class="form-group">
+                          <label for="product_price"  style="color:blue; font-size:15px">Product Price:</label>
+                          <input type="text" class="form-control" name="product_price" placeholder="Enter Product Price" required>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="product_description" style="color:blue; font-size:15px">Product Description:</label>
+                          <textarea class="form-control" placeholder="Please write product description" name="product_description" type="text" rows="5" required>
+                          </textarea>
+                          
+                        </div>
+
+                        <div class="form-group">
+                            <label for="product_quantity"  style="color:blue; font-size:15px">Product Quantity:</label>
+                            <input type="number" class="form-control" name="product_quantity" placeholder="Enter Product Quantity"required>
+                          </div>
+                          <div class="form-group">
+                            <label for="product_location"  style="color:blue; font-size:15px">Product Location:</label>
+                             <textarea class="form-control" placeholder="Please write project description" name="product_location" type="text" rows="5" required></textarea>
+                          
+                            </div>
+                          <div class="form-group">
+                            <label for="product_model"  style="color:blue; font-size:15px">Product Model:</label>
+                            <input type="text" class="form-control" id="product_model" placeholder="Enter Product model" name="product_model"required>
+                           
+                            </div>
+                          <!-- date_time_picker -->
+                          <div class="form-group">
+                            <label for="manufacturing_date"  style="color:blue; font-size:15px">Manufacturing Date: </label>
+                            <input type="text" class="form-control" id="manufacturing_date" placeholder="Enter Manufacturing date" name="manufacturing_date"required>
+                           
+                          </div>
+                           <div class="form-group">
+                            <label for="product_condition"  style="color:blue; font-size:15px">Product Condition: </label>
+                            <select class="form-control"name="product_condition" >
+                              <option>New</option>
+                               <option>Used</option>
+                            </select>
+                            
+                          </div>              
+                         <div class="form-group">
+                            <label for="product_video"  style="color:blue; font-size:15px">Product Video: </label>
+                            <input type="file" class="form-control" id="product_video" placeholder="Enter Product Video" name="product_video" required>
+                           
+                          </div>              
+                         <div class="form-group">
+                            <label for="Product_Image"  style="color:blue; font-size:15px">Product Image: </label>
+                            <input type="file" class="form-control" id="product_image" placeholder="Enter Product Image" name="myfile" required="">
+                           
+                          </div>              
+                         <div class="form-group">
+                            <label for="product_color"  style="color:blue; font-size:15px">Product Color: </label>
+                            <select class="form-control"name="product_color" >
+                              
+                              <option>Blue</option>
+                              <option>Black</option>
+                              <option>Red</option>
+                              <option>Orange</option>
+                              <option>Yellow</option>
+                              <option>White</option>
+                              <option>Green</option>
+                              <option>Pink</option>
+                            
+                            </select>
+                            
+                          </div>              
+                             <div class="form-group">
+                               <label for="product_url"  style="color:blue; font-size:15px">Product Url:</label>
+                               <input type="text" class="form-control" name="product_url" placeholder="Enter Product url" required>
+                           </div>
+                                 
+                          <center><button type="submit" class="btn btn-primary btn-lg" name="btn_addproject">Submit</button></center>
+                           <br>
+                         </form>                                 
+            </div>
+  
+</body>
+</html>
+{% endblock %}
+

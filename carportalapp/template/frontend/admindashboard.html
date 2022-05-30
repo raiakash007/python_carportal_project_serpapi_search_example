@@ -1,0 +1,103 @@
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'Styles.css' %}" type="text/css">
+    {% load static%}
+    <script>
+        $(function () {
+            $('a[data-toggle="tab"]').on('click', function (e) {
+                window.localStorage.setItem('activeTab', $(e.target).attr('href'));
+            });
+            var activeTab = window.localStorage.getItem('activeTab');
+            if (activeTab) {
+                $('#myTab a[href="' + activeTab + '"]').tab('show');
+                window.localStorage.removeItem("activeTab");
+            }
+        });
+</script>
+
+
+
+</head>
+
+
+<body style="background:url('{% static "media/homepage.jpg" %}');">
+    <h5 style="margin-top:45px;float:right;color:blue">WELCOME {{user_email}}</h5>
+    <a href="/adminlogout/"style="color:blue;float:right;margin-top:75px;font-size: 20px;margin-right: 0px;">Logout</a>
+    <form method="post">
+      <div>    
+            <img src="{% static 'media/carlogo.png' %}" class="d-block w-100" alt="..." width="13% " style="float:left;padding-right:15px;padding-top:5px">
+        <div class="col-lg-3">
+            
+            <div class=" col-lg-7" style=" height: 400px;width:10%">
+                <!-- required for floating -->
+                <!-- Nav tabs -->
+<div>
+               <hr />
+
+                <ul class="nav nav-tabs tabs-left sideways " id="myTab" style="float:right;margin-right:75px;margin-top:50px;">
+                    
+                    <li>
+                        <br>
+                      <a href="/registeredusers/" style="color:blue">View/Edit Customers <br>
+                      </a>
+                       </li>
+                       <br>
+                    <li>
+                        <a href="/productrender/" style="color:blue">Add/Edit Products<br>
+                          </a>
+                            </li>
+                            <br>
+                            <br>
+                    
+                    <br>
+                </ul>
+                
+                  </div>
+                    
+        </div>
+       <div class="tab-pane fade" id="view_project" style="margin-left:16%; width:250%; padding: 0px;opacity:.8;margin-top: 200px;">
+    <form method="post">
+      {% csrf_token %}
+       
+    <center>   <button  class="btn btn-info btn-lg btn btn-outline-dark btn-block" name="btn_viewemp">VIEW DETAILS</button></center> 
+        \<br>
+        <br>
+     <form>
+       <div class="mt-5">
+         <table class="table table-bordered"style="color:blue;font-size: 20px">
+           <thread>
+             <tr>
+               <th scope="col">Total Users</th>
+               <th scope="col">Total Cars Sold</th>
+               <th scope="col">Total Inventory</th>
+               <th scope="col">Active Users</th>
+               <th scope="col">Unactive Users</th>
+               </tr>
+            </thread>
+          
+            </tr>
+            </tbody>
+         </table>
+       </div>      
+      </form>  
+        </form>
+        </div>   
+</body>
+</html>
+{% endblock %}
+
